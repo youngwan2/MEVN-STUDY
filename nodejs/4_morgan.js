@@ -18,7 +18,8 @@ app.use((req,res,next)=>{
 })
 
 app.get('/',(req,res)=>{
-    res.send('환영합니다!')
+    // res.send('환영합니다!')
+    res.status(200).send("오 성공")
 })
 
 app.listen(PORT,()=>{
