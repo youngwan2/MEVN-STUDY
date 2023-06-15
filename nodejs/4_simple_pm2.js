@@ -5,7 +5,7 @@ const server = http.createServer((req,res)=>{
     res.setHeader('Content-Type','application/json ; charset=uft-8')
 
     const obj ={
-        "이름":"김김"
+        "이름":"김김fdsfdsfsfds"
     }
 
     res.end(JSON.stringify(obj))
