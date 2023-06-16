@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <title>YW LOGIN</title>
+    <style>
+      html {
+        background: linear-gradient(30deg, teal, black);
+      }
+      body {
+        perspective: 600px;
+        color: white;
+        height: 100vh;
+        box-shadow: 2px 2px 5px black;
+        animation: appear 1s 1 ease-in-out;
+        background-color: brown;
+        box-shadow: 2px 8px 5px 1px rgba(9, 9, 9, 0.6);
+      }
+
+      @keyframes appear {
+        from {
+          transform: translateY(-400px) rotate(180deg) scale(0.1) skewX(80deg);
+          opacity: 0;
+        }
+      }
+
+      body::-webkit-scrollbar {
+        background: rgb(28, 63, 59);
+        width: 5px;
+      }
+
+      body::-webkit-scrollbar-thumb {
+        background: rgb(68, 191, 176);
+        width: 5px;
+      }
+      h1 {
+        text-align: center;
+        padding: 10px;
+        background: black;
+        color: white;
+        text-shadow: 2px 2px 5px white;
+        transition: 0.5s;
+        box-shadow:2px 8px 5px 1px rgba(9,9,9,0.6);
+      }
+
+      h1:hover {
+        text-shadow: 1px 1px 3px gold;
+      }
+      form {
+        width: 80%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      label {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 10px;
+        padding: 5px 0;
+      }
+
+      input {
+        border-radius: 5px;
+        width: 100%;
+        padding: 10px;
+        box-shadow: inset 1px 1px 5px 1px rgba(0, 0, 0, 0.729);
+      }
+
+      textarea {
+        border-radius: 5px;
+        width: 100%;
+        padding: 11px;
+        box-shadow: inset 1px 1px 5px 1px rgba(0, 0, 0, 0.729);
+      }
+
+      select {
+        padding: 10px;
+      }
+      .btn {
+        background-color: beige;
+        border-radius: 5px;
+        box-shadow: none;
+        text-align: center;
+        position: relative;
+        left: 51.5%;
+        transform: translate(-50%);
+        max-width: 102%;
+        border: none;
+        width: 100vw;
+        margin: 2px 0;
+      }
+
+      .btn:hover {
+        cursor: pointer;
+        background-color: rgb(143, 143, 143);
+
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>KYW SERVER</h1>
+
+    <form action="/done" method="get">
+      <label for="username">이름</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        required
+        minlength="2"
+      /><br />
+
+      <label for="age" id="age_label">나이</label>
+      <input type="text" id="age" name="age" required /><br /><br />
+
+      <label for="gender">성별</label>
+      <select name="gender" id="gender">
+        <option value="남">남</option>
+        <option value="여">여</option></select
+      ><br />
+
+      <label for="content">메모</label>
+      <textarea
+        name="content"
+        id="content"
+        cols="30"
+        rows="10"
+        required
+      ></textarea
+      ><br />
+
+      <label for="date">날짜</label>
+      <input type="date" id="date" name="date" required /><br />
+
+      <br /><br />
+      <input type="submit" class="btn" />
+      <input type="reset" class="btn" />
+    </form>
+  </body>
+  <script></script>
+</html>
