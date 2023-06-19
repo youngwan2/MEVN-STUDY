@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./favicon.ico">
+    <link rel="shortcut icon" href="./favicon.ico">
+    <title>YW LOGIN</title>
+    <style>
+      body {
+        background-color: teal;
+        color: white;
+        height: 100vh;
+        box-shadow: 2px 2px 5px black;
+      }
+      h1 {
+        text-align: center;
+        padding: 10px;
+      }
+
+      form {
+        width: 80%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      label {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 10px;
+        padding: 5px 0;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        box-shadow: inset 1px 1px 5px 1px rgba(0, 0, 0, 0.729);
+      }
+
+      textarea {
+        width: 100%;
+        padding: 11px;
+        box-shadow: inset 1px 1px 5px 1px rgba(0, 0, 0, 0.729);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>KYW SERVER</h1>
+    <hr />
+
+    <form action="/done" method="get">
+      <label for="username">이름</label>
+      <input type="text" id="username" name="username" required /><br/>
+
+      <label for="age">나이</label>
+      <input type="text" id="age" name="age" required  /><br />
+
+      <label for="age">성별</label>
+      <input type="text" id="age" name="age" required  /><br />
+
+      <label for="content">메모</label>
+      <textarea name="content" id="content" cols="30" rows="10" required  ></textarea><br>
+
+      <label for="date">날짜</label>
+      <input type="date" id="date" name="date" required  /><br/>
+
+      <br><br>
+      <input type="submit" />
+      <input type="reset" />
+    </form>
+  </body>
+  <script></script>
+</html>

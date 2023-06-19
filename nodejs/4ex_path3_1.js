@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-
 app.get('/user', (req, res) => {
     const id = req.query.id;
     console.log(req.query)
@@ -21,9 +20,6 @@ app.get('/user', (req, res) => {
 
     render+='</body>'
     res.send(render)
-
-
-
 })
 
 app.get('/user/item', (req, res) => {

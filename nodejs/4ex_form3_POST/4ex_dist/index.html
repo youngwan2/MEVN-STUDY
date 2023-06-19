@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        form{
+            position: fixed;
+            left: 50%;
+            width: 300px;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            background-color: black;
+            color: white;
+        }
+        fieldset{
+            max-width: 400px;
+            padding: 15px;
+            box-shadow: 30px 30px 5px 2px rgba(81, 80, 80, 0.65);
+        }
+
+        legend{
+            border: 2px solid rgb(170, 165, 165);
+            padding: 5px;
+            background-color: tomato;
+            border: none;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        label{
+            display: inline-block;
+            width: 30px;
+        }
+
+        input{
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 5px;
+            border: none;
+        }
+
+        input:focus{
+            outline: none;
+            background-color: orange;
+        }
+        button{
+            border-radius: 5px;
+            width: 100%;
+            padding: 10px;
+            margin: 3px 0;
+            border: none;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background-color: orangered;
+            color:white;
+        }
+
+
+    </style>
+  </head>
+  <body>
+    <form action="/info" method="post">
+      <fieldset>
+        <legend >로그인 창</legend>
+
+        <div>
+          <label for="id">ID</label>
+          <input type="text" name="id" id="id" /><br />
+
+          <label for="pw">PW</label>
+          <input type="text" name="pw" id="pw" /><br /><br />
+        </div>
+        <button type="reset">취소</button>
+        <button type="submit">로그인</button>
+      </fieldset>
+    </form>
+  </body>
+</html>

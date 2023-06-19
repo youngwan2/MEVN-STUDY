@@ -1,0 +1,183 @@
+/* 리셋 */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+body {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+/* 공통 혹은 임시 */
+
+#main {
+  transform: perspective(600px);
+  transform-style: preserve-3d;
+}
+section {
+  min-height: 100vh;
+  min-width: 100%;
+}
+
+.section h2 {
+  padding: 5rem 0 0 1rem;
+}
+
+.section {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transform: rotateX(80deg) translateX(-300px);
+  transform-origin: left top;
+  transition: 1s;
+  background-color: darkgoldenrod;
+}
+
+.section.appear {
+  visibility: visible;
+  transform: rotateX(0) translateX(0); 
+
+  opacity: 1;
+}
+
+.section:nth-of-type(2n) {
+  background-color: burlywood;
+}
+
+/* 헤더 */
+.header {
+  z-index: 1000;
+  display: flex;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.776);
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: fixed;
+}
+
+.header_nav .header_menu {
+  display: flex;
+}
+
+.header_menu li {
+  padding: 10px;
+  transition: 1s;
+  position: relative;
+}
+
+.header_menu li.focus_on::after {
+  content: "";
+  width: 80%;
+  left: 0.5rem;
+  position: absolute;
+  bottom: 4px;
+  border-bottom: 2px solid brown;
+}
+
+.header_menu li.focus_on a {
+  color: black;
+  font-weight: 700;
+}
+
+/* Intro (간략한 자기 소개) */
+.intro {
+  display: flex;
+  min-height: 100vh;
+  border: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("./imgs/coding.jpg");
+  color: white;
+}
+
+.intro p {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.intro :is(h2, a) {
+  color: gold;
+  position: relative;
+}
+
+.intro a::after {
+  content: "";
+  width: 100px;
+  height: 1px;
+
+  border-bottom: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.intro a:hover::content {
+  content: "";
+  width: 100%;
+}
+
+#intro_profile {
+  background-image: url(./imgs/amos.gif);
+  background-position: center;
+  background-size: cover;
+  box-shadow: inset 1px 1px 5px 2px black;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background-color: gray;
+  transition: 1s;
+}
+
+#intro_profile:hover {
+  width: 250px;
+  height: 250px;
+  border: 2px solid ridge;
+  box-shadow: inset 0 0 0 0 black, 10px 15px 5px 3px rgba(0, 0, 0, 0.689);
+}
+
+.intro_title {
+  padding: 5px;
+  margin-top: 1.5rem;
+}
+
+/* About */
+
+/* Tech(기술 스텍)  */
+/* Projects (프로젝트) */
+/* contact (연락처 및 기타 주소)*/
+
+/* 페이지 컨트롤 버튼  */
+.page_control_article button {
+  position: fixed;
+  border: none;
+  font-size: 1.5em;
+  background-color: transparent;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.page_control_article button:hover {
+  color: goldenrod;
+  cursor: pointer;
+}
+
+.prev {
+  left: 15px;
+}
+
+.next {
+  right: 15px;
+}
