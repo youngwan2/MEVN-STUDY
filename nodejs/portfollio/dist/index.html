@@ -27,53 +27,51 @@
   </head>
   <body>
     <header class="header">
-      <h1 class="header-logo"><a href="#intro">Youngwan Kim</a></h1>
-      <nav class="header_nav">
-        <ul class="header_menu">
-          <li><a href="#intro">Intro</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#tech">Tech</a></li>
-          <li><a href="https://jhc9639.blog.me">Blog</a></li>
-          <li>
-            <a
-              href="https://github.com/wnghdcjfe"
-              target="_blank"
-              class="no-link"
-            >
-              <i class="fab fa-github"></i>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <div class="header_inner">
+        <h1 class="header-logo">
+          <a href="#intro" id="header_logo_a">Youngwan Kim</a>
+        </h1>
+        <nav class="header_nav">
+          <ul class="header_menu">
+            <li><a href="#intro">Intro</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#tech">Tech</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <!-- Intro -->
     <main id="main" class="main">
       <section class="intro section" id="intro">
+        <div class="intro_background"></div>
         <figure>
           <div id="intro_profile"></div>
         </figure>
         <h2 class="intro_title">
           Hi I'm
-          <a href="https://github.com/Youngwan2" target="_blank"
+          <a
+            class="link_github"
+            href="https://github.com/Youngwan2"
+            id="intro_title_a"
+            target="_blank"
             >Youngwan Kim</a
           >
         </h2>
         <p>
-          누구 보다 사용자 친화적 웹 프론트엔드 개발을 중시하는 개발자
-          김영완입니다. <br />방문 해주셔서 감사합니다.
+          기록하는 것을 좋아하며,<br />
+          사용자 친화적 웹 프론트엔드 개발을 중시하는 개발자 김영완입니다.
+          <br />방문 해주셔서 감사합니다.
         </p>
       </section>
 
       <!-- About -->
       <section class="about-section section" data-anchor="about" id="about">
-        <h2>About</h2>
-        <div class="">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+        <h2>About Me</h2>
+        <div class="about_container">
+          <div class="">이미지</div>
+          <div>나에 대한 간략 소개적는 부분</div>
         </div>
       </section>
 
@@ -98,8 +96,6 @@
           <div></div>
         </div>
       </section>
-
-
     </main>
 
     <article class="page_control_article">

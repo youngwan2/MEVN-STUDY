@@ -23,7 +23,20 @@ function switchPrevPage() {
   menuFocusing(currentPage)
   classRemoveFunc()
   classAddFunc(currentPage)
+  if (currentPage === 0) {
+    prev.style.cssText = `
+      opacity:0;
+      visibility: hidden;
+    `
+  }
+  if(currentPage !==MAX_PAGE) {
+    next.style.cssText = `
+    opacity:1;
+    visibility: visible;
+  `
+  }
 }
+
 
 // 다음 페이지
 function switchNextPage() {
@@ -33,6 +46,20 @@ function switchNextPage() {
   menuFocusing(currentPage)
   classRemoveFunc()
   classAddFunc(currentPage)
+
+
+  if (currentPage === MAX_PAGE) {
+    next.style.cssText = `
+    opacity:0;
+    visibility: hidden;
+  `
+  } 
+  if(currentPage !== 0){
+    prev.style.cssText = `
+    opacity:1;
+    visibility: visible;
+  `
+  }
 }
 
 // 현재 메뉴 포커스
@@ -54,6 +81,8 @@ menuLi.forEach((li, i) => {
   })
 })
 
+
+
 function classRemoveFunc() {
   for (let i = 0; i < sections.length; i++) {
     sections[i].classList.remove('appear')
@@ -70,9 +99,26 @@ function classAddFunc(currentPage) {
   sections[currentPage].classList.add('appear')
 }
 
+
+
 // 이벤트 리스너
 prev.addEventListener('click', switchPrevPage)
 next.addEventListener('click', switchNextPage)
 
 
 
+window.addEventListener('keyup', (e) => {
+  console.log(e.key)
+
+  switch (e.key) {
+    case "ArrowRight":
+      switchNextPage();
+      break;
+    case "ArrowLeft":
+      switchPrevPage();
+  }
+})
+
+/* 첫 페이지 로딩 시 페이지 초기화함수 */
+menuFocusing(0)
+classAddFunc(currentPage)

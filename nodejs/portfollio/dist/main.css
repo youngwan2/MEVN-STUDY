@@ -46,7 +46,7 @@ section {
 
 .section.appear {
   visibility: visible;
-  transform: rotateX(0) translateX(0); 
+  transform: rotateX(0) translateX(0);
 
   opacity: 1;
 }
@@ -58,13 +58,18 @@ section {
 /* 헤더 */
 .header {
   z-index: 1000;
-  display: flex;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.776);
+  position: fixed;
+}
+
+.header_inner {
+  margin: 0 auto;
+  width: 90%;
+  padding: 10px;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  position: fixed;
+  display: flex;
 }
 
 .header_nav .header_menu {
@@ -78,7 +83,7 @@ section {
 }
 
 .header_menu li.focus_on::after {
-  content: "";
+  content: '';
   width: 80%;
   left: 0.5rem;
   position: absolute;
@@ -91,6 +96,10 @@ section {
   font-weight: 700;
 }
 
+#header_logo_a {
+  border-bottom: 2px solid red;
+}
+
 /* Intro (간략한 자기 소개) */
 .intro {
   display: flex;
@@ -99,8 +108,16 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("./imgs/coding.jpg");
   color: white;
+}
+
+.intro_background {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: -1;
+  filter: brightness(40%);
+  background-image: url('./imgs/coding.jpg');
 }
 
 .intro p {
@@ -109,15 +126,14 @@ section {
 }
 
 .intro :is(h2, a) {
-  color: gold;
+  color: white;
   position: relative;
 }
 
 .intro a::after {
-  content: "";
+  content: '';
   width: 100px;
   height: 1px;
-
   border-bottom: 2px;
   position: absolute;
   bottom: 0;
@@ -125,7 +141,7 @@ section {
 }
 
 .intro a:hover::content {
-  content: "";
+  content: '';
   width: 100%;
 }
 
@@ -150,10 +166,24 @@ section {
 
 .intro_title {
   padding: 5px;
-  margin-top: 1.5rem;
+  font-size: 2.5rem;
+}
+
+#intro_title_a {
+  border-bottom: 3px solid red;
+}
+
+#intro_title_a:hover {
+  color: gold;
 }
 
 /* About */
+.about_container {
+  border: 1px solid black;
+  width: 90%;
+  margin: 10px;
+  height: 700px;
+}
 
 /* Tech(기술 스텍)  */
 /* Projects (프로젝트) */
