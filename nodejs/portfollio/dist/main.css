@@ -82,13 +82,21 @@ section {
   position: relative;
 }
 
+.header_menu li::after{
+  content: '';
+  width: 0%;
+  transition: 1s;
+  border-bottom: 5px solid brown
+}
+
+
 .header_menu li.focus_on::after {
   content: '';
   width: 80%;
   left: 0.5rem;
   position: absolute;
   bottom: 4px;
-  border-bottom: 2px solid brown;
+  border-bottom: 5px solid brown;
 }
 
 .header_menu li.focus_on a {

@@ -14,15 +14,18 @@ app.use(logger('tiny'))
 
 app.get('/files', (req, res) => {
     fs.readdir(_path, 'utf-8', (err, data) => {
-
+        // console.log(Array.isArray(data))
         let list = '<body style="background:black;"><h1 style="text-align:center; color:gold;">Content</h1>'
-        list += `<a href="/${data[27]}/dist" style="display:block; background-color:white; padding:10px; box-shadow:inset 0 0 5px 2px black">포트폴리오</a><br>`
         data.forEach((el, i) => {
-            list += `<a href="/${el}" style="text-decoration:none; display:block; background-color:white; padding:10px; box-shadow:inset 0 0 5px 2px black">${i + 1}__${el}</a><br>`
+            if (el.indexOf('.') === -1) {
+                list += `<a href="#"  style="text-decoration:none; display:block; background-color:white; padding:10px; box-shadow:inset 0 0 5px 2px black">폴더임</a><br>`
+            } else {
+                list += `<a href="/${el}" style="text-decoration:none; display:block; background-color:white; padding:10px; box-shadow:inset 0 0 5px 2px black">${i + 1}__${el}</a><br>`
+            }
         })
 
-        list+='</body>'
-        console.log(data.length)
+        list += '</body>'
+        console.log(data.length + '개의 목록이 있습니다.')
         res.send(list)
     })
 })

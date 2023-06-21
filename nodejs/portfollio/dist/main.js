@@ -22,6 +22,7 @@ function switchPrevPage() {
 
   menuFocusing(currentPage)
   classRemoveFunc()
+
   classAddFunc(currentPage)
   if (currentPage === 0) {
     prev.style.cssText = `
@@ -29,13 +30,16 @@ function switchPrevPage() {
       visibility: hidden;
     `
   }
-  if(currentPage !==MAX_PAGE) {
+  if (currentPage !== MAX_PAGE) {
     next.style.cssText = `
     opacity:1;
     visibility: visible;
   `
   }
 }
+
+
+
 
 
 // 다음 페이지
@@ -53,8 +57,8 @@ function switchNextPage() {
     opacity:0;
     visibility: hidden;
   `
-  } 
-  if(currentPage !== 0){
+  }
+  if (currentPage !== 0) {
     prev.style.cssText = `
     opacity:1;
     visibility: visible;
@@ -122,3 +126,10 @@ window.addEventListener('keyup', (e) => {
 /* 첫 페이지 로딩 시 페이지 초기화함수 */
 menuFocusing(0)
 classAddFunc(currentPage)
+
+if (currentPage === 0) {
+  prev.style.cssText = `
+    opacity:0;
+    visibility: hidden;
+  `
+}
