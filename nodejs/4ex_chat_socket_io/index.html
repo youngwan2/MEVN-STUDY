@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Orbit&display=swap');
+      * {
+        margin: 0;
+      }
+
+      #message {
+        padding: 0;
+      }
+
+      .container {
+        position: relative;
+        border-radius: 50px;
+        border-left: 2px solid rgba(0, 0, 0, 0.719);
+        border-right: 4px solid rgba(0, 0, 0, 0.763);
+        max-width: 500px;
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        left: 50%;
+        transform: translate(-50%);
+        box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.494);
+      }
+      body {
+        background: linear-gradient(60deg, rgb(184, 184, 191), white);
+        color: black;
+        width: 100%;
+        height: 100vh;
+        font-family: 'Orbit', sans-serif;
+      }
+      h1 {
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        background-color: rgba(0, 0, 0, 0.938);
+        color:white;
+        text-align: center;
+        padding: 10px;
+      }
+      #form {
+        text-align: center;
+        background-color: black;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-bottom-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+        padding: 10px 0;
+      }
+      input {
+        box-shadow: inset 0 0 5px 1px rgb(193, 190, 190);
+        border: none;
+        padding: 10px;
+        width: 300px;
+        border-radius: 20px;
+      }
+
+      input:focus {
+        outline: none;
+      }
+      button {
+        background-color: gold;
+        padding: 8px 13px;
+        border: none;
+        border-radius: 5px;
+      }
+
+      button:hover {
+        background-color: greenyellow;
+      }
+
+      li {
+        width: 90%;
+        list-style: none;
+        margin: 0 auto;
+        border-radius: 5px;
+        padding: 10px;
+      }
+
+      li:nth-of-type(2n) {
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>채팅방</h1>
+      <ul id="message">
+        <form action="#" id="form">
+          <input type="text" id="input" autocomplete="off" />
+          <button>전송</button>
+        </form>
+      </ul>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      const message = document.getElementById('message');
+      const form = document.querySelector('form');
+      const input = document.querySelector('input');
+
+      form.addEventListener('submit', (e) => {
+        console.log('chat out');
+        e.preventDefault();
+        /*========== =====전송================================ */
+        if (input.value) {
+          // 사용자가 입력한 값으로 소켓 전송한다.
+          socket.emit('chat message', input.value);
+          // 전송 후 input 초기화
+          input.value = '';
+        }
+      });
+
+      /* ========수신=========================================== */
+      socket.on('chat message', (msg) => {
+        console.log('수신받음:', msg);
+        const talk = document.createElement('li');
+        talk.textContent = msg;
+        message.appendChild(talk);
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+    </script>
+  </body>
+</html>
