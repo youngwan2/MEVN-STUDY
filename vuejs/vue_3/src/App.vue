@@ -9,7 +9,7 @@
       <div class="content_container">
         <p>1. <router-link to="/ex1">v-model, v-for, v-on, v-if와 v-show</router-link></p>
         <p>2. <router-link to="/ex2">데이터 양방향 바인딩</router-link></p>
-        <p>3. <router-link to="/ex3">ex3</router-link></p>
+        <p>3. <router-link to="/ex3">데이터 가져와서 렌더링</router-link></p>
         <p>4. <router-link to="/ex4">ex4</router-link></p>
       </div>
     </transition>

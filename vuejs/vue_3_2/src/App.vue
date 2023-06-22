@@ -1,7 +1,12 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/content">Content</router-link> |
+    <router-link to="/strhtml">strHTML</router-link> |
+    <router-link to="/input">input</router-link> |
+    <router-link to="/select">selct</router-link> |
+    <router-link to="/strhtml">strHTML</router-link> |
+    <router-link to="/strhtml">strHTML</router-link> |
+    <router-link to="/strhtml">strHTML</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
   <router-view/>
