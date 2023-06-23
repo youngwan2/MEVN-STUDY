@@ -1,5 +1,6 @@
 <template>
-    <h1>Select</h1>
+    <h1>3. Select</h1>
+    <hr>
     <div>
         <select name="" id="" v-model="selData">
             <option :value="list.value" v-for="list in options" :key="list.value">{{ list.select }}</option>

@@ -26,6 +26,21 @@ const routes = [
     component: () => import(/* webpackChunkName: "about", webpackPrefetch:true*/  '../views/SelectView.vue')
   },
   {
+    path: '/checkbox',
+    name: 'chekcbox',
+    component: () => import(/* webpackChunkName: "about", webpackPrefetch:true*/  '../views/CheckboxView.vue')
+  },
+  {
+    path: '/attr',
+    name: 'attribute',
+    component: () => import(/* webpackChunkName: "about", webpackPrefetch:true*/  '../views/AttributeView.vue')
+  },
+  {
+    path: '/bindlist',
+    name: 'bindlist',
+    component: () => import(/* webpackChunkName: "about", webpackPrefetch:true*/  '../views/BindlistView.vue')
+  },
+  {
     path: '/about',
     name: 'about',
     // route level code-splitting
