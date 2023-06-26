@@ -4,17 +4,15 @@
     <hr />
     <div>
       <select @change="choiceAreaFunc">
-        <option
-          v-for="option in options"
-          :key="option.value"
-          :value="option.select"
-        >
+        <option v-for="option in options" :key="option.value" :value="option.select">
           {{ option.select }}
         </option>
       </select>
     </div>
     <p>선택하신 배송지역:{{ selectArea }}</p>
     <p>※제주산간지방은 5,000원이 추가됩니다.</p>
+    <button @click="ascPrice">정렬(낮은 가격순)</button>
+    <button @click="descPrice">정렬(높은 가격순)</button>
     <table class="table">
       <tr>
         <th>No.</th>
@@ -30,7 +28,7 @@
         <td>{{ item.category }}</td>
         <td>{{ item.product_name }}</td>
         <td>{{ item.price }}</td>
-        <td>{{ item.delivery_price}}</td>
+        <td>{{ item.delivery_price }}</td>
         <td>
           {{ item.count }}
           <button @click="add(i)">+</button>
@@ -39,10 +37,7 @@
         <td>{{ item.total }}</td>
       </tr>
       <tr>
-        <td
-          style="background-color: white; color: black; font-weight: 700"
-          colspan="6"
-        >
+        <td style="background-color: white; color: black; font-weight: 700" colspan="6">
           총합
         </td>
         <td>{{ sumOfTotal }}</td>
@@ -121,9 +116,7 @@ export default {
 
       for (let i = 0; i < this.itemList.length; i++) {
         if (this.selectArea === "제주") {
-           (this.itemList[i].delivery_price += 5000);
-        } else {
-          (this.itemList[i].delivery_price -= 5000);
+          (this.itemList[i].delivery_price += 5000);
         }
       }
     },
@@ -140,6 +133,34 @@ export default {
         this.itemList[i].price * count +
         (count && this.itemList[i].delivery_price);
     },
+    ascPrice() {
+      // console.log(this.itemList)
+      for (let i = 0; i < this.itemList.length; i++) {
+        let temp = 0;
+        for (let j = 0; j < this.itemList.length - i - 1; j++) {
+          if (this.itemList[j].price > this.itemList[j + 1].price) {
+            temp = this.itemList[j]
+            this.itemList[j] = this.itemList[j + 1]
+            this.itemList[j + 1] = temp
+          }
+        }
+      }
+
+      // this.itemList = this.itemList.sort()
+    },
+
+    descPrice() {
+      for (let i = 0; i < this.itemList.length; i++) {
+        let temp = 0;
+        for (let j = 0; j < this.itemList.length - i - 1; j++) {
+          if (this.itemList[j].price < this.itemList[j + 1].price) {
+            temp = this.itemList[j+1]
+            this.itemList[j+1] = this.itemList[j]
+            this.itemList[j] = temp
+          }
+        }
+      }
+    }
   },
   updated() {
     this.sumOfTotal =
