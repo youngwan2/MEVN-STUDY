@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .profile_label {
+        background-color: black;
+        color: white;
+        padding: 3px 6px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .profile_label:hover {
+        color: goldenrod;
+      }
+
+      #profile {
+        /* visibility: hidden; */
+        background-color: black;
+        text-align: center;
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+      }
+
+      #profile::file-selector-button {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>파일 업로드 기능 만들기</h1>
+    <!-- multer 모듈은 "multipart/form-data"이 아니면 작동하지 않는다.  -->
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <input
+        type="file"
+        name="profile"
+        onchange="fileSize(this)"
+        id="profile"
+      />
+      <label for="profile" class="profile_label">+</label>
+      <br />
+      <input type="submit" value="이미지 업로드" />
+    </form>
+    <!-- <form action="/mkdir/" method="POST">
+        <input type="text" name="mk" placeholder="?">
+        <input type="submit">
+
+    </form> -->
+    <form action="/mkdir/0" method="GET">
+      <input type="text" name="mk" placeholder="?" />
+      <input type="submit" />
+    </form>
+
+    <script>
+      /* 파일 사이즈 제한 */
+      function fileSize(input) {
+        const SS = 10; //MB
+        console.log(input.files[0]);
+        if (input.files[0].size > 1024 * 1024 * SS) {
+          alert(`파일 사이즈가 ${SS}MB를 초과하였습니다.`);
+        }
+      }
+
+      const profile = document.getElementById('profile')
+
+      console.log(profile)
+    </script>
+  </body>
+</html>

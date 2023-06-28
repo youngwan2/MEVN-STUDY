@@ -9,36 +9,12 @@ const app = express();
 const _path = path.join(__dirname, './')
 app.use('/', express.static(_path))
 app.use(morgan('tiny'))
-
-
 app.use(express.urlencoded({ extended: false }))
-
-
-
-// fs.writeFile('./text.txt', "글을 적읎시다.작성한 내용이 txt 파일 내부로!", (err) => {
-//     console.log(err)
-//     fs.readFile('./text.txt', 'utf-8', (err, result) => {
-//         console.log(result)
-//     })
-// })
-
-/* get */
-// app.get('/data', (req, res) => {
-//     const name = req.query.id;
-//     const pw = req.query.pw;
-//     const content = `유저의 아이디는 ${name} 이고, 유저의 비밀번호는 ${pw} 입니다.`
-//     console.log(req.query)
-//     fs.writeFile('./loginInfo.txt', content, (err) => {
-//         if(err) return res.send(`에러가 발생했습니다.${err}`)
-//         console.log("정상적으로 해킹되었습니다.")
-//         res.send(`<script>alert('해킹 완료! 아이디:${name}, 비밀번호:${pw}')</script>`)
-//     })
-// })
-
-
 app.get('/', (req, res) => {
     res.send('홈페이지')
 })
+
+
 
 app.post('/login', (req, res) => {
     const name = req.body.id;
@@ -55,10 +31,14 @@ app.post('/login', (req, res) => {
         console.log("정상적으로 해킹되었습니다.")
     })
 
+    function delFile() {
+        console.log(1)
+    }
     fs.readdir(_path, (err, result) => {
         let list = `<body style="background:black; color:white; background-image:url('./coding.jpg')"><h1 style="text-align:center; padding:5px; background:rgba(9,9,9,0.5);">해킹 파일 목록</h1>`
         result.forEach((li, i) => {
-            list += `<p style="background:rgba(9,9,9,0.8); padding:10px; width:200px; margin:1rem auto"><a style="text-decoration:none; color:gold;" href="/${li}">${i + 1}__${li}</a></p>`
+            list += `<p style="background:rgba(9,9,9,0.8); padding:10px; width:200px; margin:1rem auto"><a style="text-decoration:none; color:gold;" href="/${li}">${i + 1}__${li}</a></br>
+                <button onclick="location.href='del/${li}'">백업 및 삭제</button></p>`
         })
         list += `
             <div style=" padding:10px; background:rgba(9,9,9,0.6); color:white; width:200px; position:absolute; left:5%; top:30%;">
@@ -69,7 +49,6 @@ app.post('/login', (req, res) => {
                 <p>나이 : ${age}</p>
                 <p>접속시간 : ${date}<br>(실제: ${new Date().toLocaleString()})</p>
             </div>
-        
         `
         list += `</body>`
         res.send(list)
@@ -87,6 +66,19 @@ app.post('/login', (req, res) => {
         if (err) throw err;
         console.log('파일에 성공적으로 추가되었다?')
     })
+})
+
+
+app.get('/del/:filename', (req, res) => {
+    const targetFile = req.params.filename
+    console.log(targetFile)
+
+    fs.unlink(_path + '/' + targetFile, (err) => {
+        if (err) throw err;
+        console.log("제거되었다.")
+    })
+    res.sendFile(__dirname + '/index.html');
+    /* location.href =document.referrer */
 })
 
 const port = 3005;

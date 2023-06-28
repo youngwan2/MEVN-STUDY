@@ -31,6 +31,19 @@ app.get('/files', (req, res) => {
 })
 
 
+app.get('del/:filename', (req, res) => {
+    const targetFile= req.params.filename
+    console.log(targetFile)
+
+    fs.unlink(_path+'/'+targetFile, (err) => {
+        if (err) throw err;
+        console.log("제거되었다.")
+    })
+
+    send("삭제성공?")
+})
+
+
 app.listen(port, () => {
     console.log(port)
 })

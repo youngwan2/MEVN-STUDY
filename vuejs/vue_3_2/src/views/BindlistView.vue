@@ -10,6 +10,8 @@
         </div>
         <p>선택하신 배송지역:{{ selectArea }}</p>
         <p>※제주산간지방은 5,000원이 추가됩니다.</p>
+        <button>정렬(가격 낮은순)</button>
+        <button>정렬(가격 높은순)</button>
         <table class="table">
             <tr>
                 <th>No.</th>
@@ -37,7 +39,6 @@
                 <td></td>
             </tr>
         </table>
-
     </div>
 </template>
 <script>
@@ -117,11 +118,11 @@ export default {
                 this.plusDeli = 0;
             }
         },
-        add(i){
+        add(i) {
             this.itemList[i].count++
         },
-        min(i){
-            if(this.itemList[i].count==0) return
+        min(i) {
+            if (this.itemList[i].count == 0) return
             this.itemList[i].count--
         }
     }

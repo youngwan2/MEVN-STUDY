@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+      }
+
+      .container .title {
+        text-align: center;
+        position: relative;
+        top: 0;
+        max-width: 530px;
+        min-width: 410px;
+        width: 100%;
+        background-color: black;
+        color: white;
+        padding: 10px;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+      }
+
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .container {
+        border-right: 3px solid black;
+        border-left: 2px solid gray;
+        border-bottom: 3px solid black;
+        border-radius: 30px;
+        margin: 0 auto;
+        max-width: 550px;
+        position: relative;
+        height: 100%;
+        min-height: 100%;
+      }
+
+      #messages {
+        width: 100%;
+        padding: 5px 0;
+      }
+
+      #form {
+        max-width: 550px;
+        width: 100%;
+        position: relative;
+        bottom: 0px;
+        padding: 20px 0;
+        text-align: center;
+        background-color: black;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+
+      input {
+        padding: 10px 25px;
+        min-width: 200px;
+        border-radius: 20px;
+        border: none;
+      }
+
+      button {
+        border: none;
+        padding: 8px;
+        border-radius: 5px;
+        background-color: gold;
+      }
+
+      li {
+        list-style: none;
+        padding: 10px 10px;
+        margin: 0;
+        border-radius: 3px;
+      }
+      li:nth-of-type(2n) {
+    
+        background-color: rgba(140, 140, 142, 0.65);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">채팅방</h1>
+
+      <ul id="messages"></ul>
+      <form action="" id="form">
+        <input type="text" id="input" />
+        <button>보내기</button>
+      </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      // io() 는 기본적으로 페이지를 제공하는 호스트에 연결을 시도하므로
+      // 호출할 때 URL을 지정하지 않는다.
+      const socket = io();
+      const container = document.querySelector('.container')
+      const form = document.getElementById('form');
+      const input = document.getElementById('input');
+      const messages = document.getElementById('messages');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault(); // 자동 초기화 방지
+        if (input.value) {
+          // emit() 메서드는 유저가 입력한 값을 전송하는 메서드
+          socket.emit('chat message', input.value);
+
+          // 유저의 메시지를 전송한 이후에 input 을 '' 으로 초기화
+          input.value = '';
+        }
+      });
+
+      socket.on('chat message', (msg) => {
+        console.log('전달:', msg);
+        const item = document.createElement('li');
+        item.textContent = msg;
+        messages.appendChild(item);
+        window.scrollTo(0, container.scrollHeight);
+      });
+    </script>
+  </body>
+</html>
