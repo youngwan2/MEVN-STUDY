@@ -9,7 +9,6 @@ function promErr() {
 //     console.log(e)
 // })
 
-
 // async 는 throw 로 예외 처리할 수 있다.
 async function asyncErr(){
     console.log(new Date().toLocaleString())
