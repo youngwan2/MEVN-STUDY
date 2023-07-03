@@ -2,7 +2,6 @@
 async function testError() {
   console.log('에러 던지기를 시작합니다.');
   throw new Promise((resolve, reject) => {
-    // resolve(Error('testError을 고의적으로 발생'));
     reject(console.log('제가 표시한 에러임'));
   });
 }

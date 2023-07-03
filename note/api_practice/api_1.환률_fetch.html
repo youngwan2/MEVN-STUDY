@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+      }
+      body {
+        background: rgb(173, 172, 172);
+      }
+
+      h1 {
+        background-color: rgb(9, 115, 130);
+        padding: 10px;
+        color: white;
+        text-align: center;
+        box-shadow: 5px 20px 5px 2px rgba(0, 0, 0, 0.664);
+      }
+
+      section {
+        color:white;
+        background-color: rgba(33, 139, 152, 0.694);
+        text-align: center;
+        padding: 15px;
+        border-radius: 15px;
+        position: absolute;
+        left: 50%;
+        width: 100%;
+        max-width: 40%;
+        top: 40%;
+        transform: translate(-50%, -40%);
+        box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.661);
+      }
+
+      input {
+        background-color: rgb(10, 57, 119);
+        color: rgb(255, 255, 255);
+        box-shadow: inset 0 0 5px 2px rgba(0, 0, 0, 0.467);
+        margin: 5px;
+        text-align: center;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+      }
+
+      input::placeholder {
+        color: white;
+      }
+
+      p {
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+        margin: 5px;
+        color: rgb(0, 0, 0);
+        background-color: white;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: inset 0 0 5px 2px rgba(0, 0, 0, 0.837);
+      }
+      
+      img{
+        width: 100%;
+        
+        filter: blur(2px) brightness(90%);
+        height: 100vh;
+      }
+      span {
+        color: red;
+      }
+      button {
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      button:hover {
+        background-color: black;
+        color: white;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>환률 변환 사이트</h1>
+    <img src="https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/6eRf/image/ddBzUdVxeiB2y2YMCLrM_4d7JY4.png" alt="">
+    <section>
+      <br />
+      <h2>달러(USD)로 환전하기</h2>
+      <br />
+      <input type="number" placeholder="원화로 입력" />
+      <p>환전된 금액은 <span>0</span> 달러 입니다.</p>
+      <br />
+      <button>변환</button>
+      <br />
+      <br />
+      <hr />
+      <br />
+      <br />
+      <h2>원화(원)로 환전하기</h2>
+      <br />
+      <input type="number" placeholder="달러로 입력" />
+      <p>환전된 금액은 <span>0</span> 원 입니다.</p>
+      <br />
+      <button>변환</button>
+    </section>
+    <hr />
+    <script>
+      const input = document.querySelectorAll('input');
+      const button = document.querySelectorAll('button');
+      const span = document.querySelectorAll('span');
+
+      const url =
+        'https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD';
+
+      //  fetch(url)
+      //     .then((response) => {
+      //       return response.json();
+      //     })
+      //     .then((data) => {
+      //         console.log(data)
+
+      //     }).catch((error)=>{
+      //         console.log(error)
+      //     })
+
+      async function fecthFunc() {
+        const $fetch = fetch(url);
+        const response = await $fetch;
+        const data = await response.json();
+
+        console.log(data);
+
+        const changeRate = data[0].basePrice;
+        console.log('환율:', changeRate);
+
+        /* 달러로 환전하기 */
+        button[0].addEventListener('click', () => {
+          const inputValue = input[0].value;
+          console.log('1번째 인풋:', inputValue);
+          const cangeResult = inputValue / changeRate;
+          console.log('달러:', cangeResult.toLocaleString());
+
+          span[0].innerHTML = cangeResult.toLocaleString();
+        });
+
+        /* 원화로 환전하기 */
+        button[1].addEventListener('click', () => {
+          const inputValue = input[1].value;
+          console.log('2번째 인풋:', inputValue);
+          const changeResult = inputValue * changeRate;
+          console.log('원화:', changeResult.toLocaleString());
+
+          span[1].innerHTML = changeResult.toLocaleString();
+        });
+      }
+
+      fecthFunc();
+
+      // - 달러 -> 원화로 변경 : 달러 금액 x 환율 = 원화 금액
+      /// -------- 예) 10달러 x 1,213.00 = 12,130원
+      // 환률(Exchange Rate)
+
+      //- 원화 -> 달러로 변경 : 원화 금액 / 환율 = 달러 금액
+      // --------- 예) 10,000원 / 1,213.00 = 8.24달러
+    </script>
+  </body>
+</html>
