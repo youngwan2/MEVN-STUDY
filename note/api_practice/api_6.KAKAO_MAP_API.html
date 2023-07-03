@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML API Geolocation</title>
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3b10fb7d5f3f1d9f70a97ca983ca888d"
+    ></script>
+    <style>
+      * {
+        margin: 0;
+      }
+
+      h1 {
+        margin: 0;
+        padding: 10px 0;
+        color: black;
+        background-color: white;
+      }
+      body {
+        background-color: rgb(0, 0, 0);
+        mix-blend-mode: luminosity;
+      }
+      #map {
+        /* mix-blend-mode: difference; */
+        top: 30%;
+        border-radius: 50%;
+
+        margin: 30px;
+        position: absolute;
+        border: 1px solid red;
+        left: 50%;
+        transform: translate(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Geolocation을 이용한 위도와 경도 찾기</h1>
+    <p id="my_location"></p>
+    <hr />
+    <div id="map" style="width: 300px; height: 300px">11</div>
+
+    <script>
+      //   위치 찾기 및 브라우저 지원 확인
+      function findLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showMapAndMarker);
+        } else {
+          loc.innerHTML =
+            '현 브라우저에서는 위치기반 DOM api를 지원하지 않습니다.';
+        }
+      }
+      findLocation();
+
+      // 지도를 불러오고, 해당 지도의 지정 위치에 마커를 표시하는 함수
+      function showMapAndMarker(p) {
+        // p : GeolocationPosition 클래스를 반환함. 해당 클래스의 인스턴스에 접근하면 위도/경로 정보 알 수 있음
+        const lat = p.coords.latitude;
+        const lon = p.coords.longitude;
+
+        const mapContainer = document.getElementById('map'), // 지도를 표시할 div
+          mapOption = {
+            center: new kakao.maps.LatLng(lat, lon), // 지도의 중심좌표
+            level: 3, // 지도의 확대 레벨
+          };
+
+        const map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+        // 마커가 표시될 위치입니다
+        const markerPosition = new kakao.maps.LatLng(lat, lon);
+
+        // 마커를 생성합니다
+        const marker = new kakao.maps.Marker({
+          position: markerPosition,
+        });
+
+        marker.setMap(map);
+
+        //정보?
+
+        const iwContent = `<div style="color:black; background-color:white">여기가 내 위치
+           </div>`;
+        const infowindow = new kakao.maps.InfoWindow({
+          content: iwContent,
+          position: markerPosition,
+          removable: true,
+        });
+
+        // 마커에 클릭이벤트를 등록합니다
+        kakao.maps.event.addListener(marker, 'click', ()=> {
+          // 마커 위에 인포윈도우를 표시합니다
+          infowindow.open(map, marker);
+        });
+
+        // 마커가 지도 위에 표시되도록 설정합니다
+
+        infowindow.open(map, marker);
+      }
+    </script>
+  </body>
+</html>
