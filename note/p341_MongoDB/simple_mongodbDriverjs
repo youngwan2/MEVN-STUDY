@@ -1,0 +1,33 @@
+const MongoClient = require('mongodb').MongoClient;
+const Photos = require('./photo.js');
+const fs = require('fs');
+const path = require('path');
+
+const mongoDB = 'mongodb://127.0.0.1/my_database2';
+
+
+const main = async()=>{
+    // 몽고 db 연결한다. 
+    const client = await MongoClient.connect(mongoDB,{useUnifiedTopology: true, useNewUrlParser:true})
+    .catch((err)=> console.error(err))
+
+    // 앨범 데이터가 들어있는 json 파일의 경로를 _path 변수에 저장
+    const _path = path.join(__dirname,'./photos.json')
+
+    // _path 내 파일에 저장된 데이터를 동기적(순차적으로) 읽어와서 JSON 데이터를 
+    // 자바스크립트 객체 형식으로 변환한다.
+    const t = JSON.parse(fs.readFileSync(_path).toString())
+
+    // 몽고 db의 my_database2 라는 이름의 데이터베이스의 컬렉션인 Photo 에 연결한다.
+    const col =client.db('my_database2').collection('Photo2')
+    console.time('5000건의 데이터 삽입')
+
+    // my_database2 데이터베이스의 컬렉션 Photo 에 변수 t에 저장된 앨범 데이터들을 다량으로 삽입한다.
+    // insertOne 은 하나의 데이터를 저장하는거고, insertMany 는 하나 이상의 데이터를 저장할 때 쓴다.
+    col.insertMany(t, (err,docs)=>{
+        console.timeEnd('5000건의 데이터 삽입')
+    })
+}
+
+main()
+
